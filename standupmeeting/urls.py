@@ -1,10 +1,13 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-urlpatterns = [
-    # Examples:
-    # url(r'^$', 'standupmeeting.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 
+urlpatterns = [
+	url(r'^$', 'home.views.home_login', name='home_login'),
     url(r'^admin/', include(admin.site.urls)),
+]
+
+#Dashboard
+urlpatterns += [
+	url(r'^dashboard/', include('dashboard.urls')),
 ]
