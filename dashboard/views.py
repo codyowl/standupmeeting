@@ -10,8 +10,7 @@ def compose(request, template='dashboard/compose.html'):
 	if request.method == 'POST':
 		form = ComposeForm(request.POST)
 		if form.is_valid():
-			name = form.cleaned_data['name']
-			email = form.cleaned_data['email']
+			emailbody = form.cleaned_data['emailbody']
 
 	else:
 		form = ComposeForm()
