@@ -19,7 +19,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Configure recipients</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="" method="post">
+						<form class="form-horizontal" action="." method="post">
+						{% csrf_token %}
 							<fieldset>
 								<!-- Name input-->
 								<div class="form-group">
@@ -62,15 +63,20 @@
 						    <tr>
 						  		<th data-field="name"  data-sortable="true">Name</th>
 						        <th data-field="price" data-sortable="true">Email</th>
+						        
 						    </tr>
 						    </thead>
-
+						   
 						    <tbody>
+						    	{% for user in recipient %}
 						    	<tr>
-						    		<td>hai</td>
-						    		<td>hello</td>
+						    		<td>{{ user.recipientname }}</td>
+						    		<td>{{ user.recipientemail }}</td>
+
 						    	</tr>
+						    	{% endfor %}
 						    </tbody>
+						    
 						</table>
 					</div>
 				</div>

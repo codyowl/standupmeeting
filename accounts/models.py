@@ -10,8 +10,15 @@ class Recipient(models.Model):
 	def __unicode__(self):
 		return self.recipientname
 
+	def get_all_emailbody(self):
+		emailbody = EmailBody.objects.filter(recipient=self)
+		return emailbody
+
 
 class EmailBody(models.Model):
 	recipient = models.ForeignKey(Recipient)
 	emailbody = models.CharField(max_length=1024)
 	created_date = models.DateTimeField(auto_now_add=True)	
+
+	def __unicode__(self):
+		return self.emailbody

@@ -7,39 +7,24 @@
 			<div class="col-lg-12">
 				<h2>Email Logs</h2>
 			</div>
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						Default Panel
-					</div>
-					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut ante in sapien blandit luctus sed ut lacus. Phasellus urna est, faucibus nec ultrices placerat, feugiat et ligula. Donec vestibulum magna a dui pharetra molestie. Fusce et dui urna.</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						Receipt name
-					</div>
-					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut ante in sapien blandit luctus sed ut lacus. Phasellus urna est, faucibus nec ultrices placerat, feugiat et ligula. Donec vestibulum magna a dui pharetra molestie. Fusce et dui urna.</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						Success Panel
-					</div>
-					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut ante in sapien blandit luctus sed ut lacus. Phasellus urna est, faucibus nec ultrices placerat, feugiat et ligula. Donec vestibulum magna a dui pharetra molestie. Fusce et dui urna.</p>
-					</div>
-				</div>
-			</div>
 
+
+			{% for user in recipient %}
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						{{ user.recipientname }}
+					</div>
+					<div class="panel-body">
+						{% for content in user.get_all_emailbody %}
+						<p>{{ content }}</p>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			
+			
 
 			
 		</div><!-- /.row -->

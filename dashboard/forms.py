@@ -5,4 +5,4 @@ class RecipientForm(forms.Form):
 	email = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter Receipt email'}))
 
 class ComposeForm(forms.Form):
-	emailbody = forms.CharField(required=True, widget=forms.Textarea())	
+	emailbody = forms.CharField(required=True, widget=forms.Textarea(attrs={'style':'vertical-align: middle'}))	
