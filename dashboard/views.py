@@ -4,6 +4,7 @@ from django.template import RequestContext
 from dashboard.forms import RecipientForm, ComposeForm
 from accounts.models import Recipient, EmailBody
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 def dashboard_home(request, template='dashboard/dashboard_home.html'):
 	return render_to_response(template, context_instance=RequestContext(request))
@@ -24,6 +25,7 @@ def compose(request, template='dashboard/compose.html'):
 			for i in range(len(recipient_list)):
 				re = EmailBody(recipient=recipient_list[i],emailbody=emailbody_content[i])
 				re.save()
+			messages.success(request, 'Emails shot !')	
 			return HttpResponseRedirect('/dashboard/compose/')		
 			
 	else:
@@ -47,6 +49,7 @@ def configure(request, template='dashboard/configure.html'):
 			email = form.cleaned_data['email']
 			recipient = Recipient(user=user, recipientname=name, recipientemail=email)
 			recipient.save()
+			messages.success(request, 'Recipient added !')
 			return HttpResponseRedirect('/dashboard/configure/')
 	else:
 		form = RecipientForm()
