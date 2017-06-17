@@ -11,7 +11,7 @@ def dashboard_home(request, template='dashboard/dashboard_home.html'):
 
 def compose(request, template='dashboard/compose.html'):
 	msg = []
-	user = User.objects.get(username='sampath kumar')
+	user = User.objects.get(username='sampathkumar')
 	recipient = Recipient.objects.filter(user=user)
 	recipient_list = []
 	for r in recipient:
@@ -40,8 +40,9 @@ def compose(request, template='dashboard/compose.html'):
 	return render_to_response(template,context,context_instance=RequestContext(request))
 
 def configure(request, template='dashboard/configure.html'):
+	print request.user.username
 	msg = []
-	user = User.objects.get(username='sampath kumar')
+	user = User.objects.get(username='sampathkumar')
 	if request.method == 'POST':
 		form = RecipientForm(request.POST)
 		if form.is_valid():
@@ -64,7 +65,7 @@ def configure(request, template='dashboard/configure.html'):
 	return render_to_response(template,context,context_instance=RequestContext(request))
 
 def log(request, template='dashboard/log.html'):
-	user = User.objects.get(username='sampath kumar')
+	user = User.objects.get(username='sampathkumar')
 	recipient = Recipient.objects.filter(user=user)
 	
 			
@@ -82,4 +83,10 @@ def monthly_summary(request, template='dashboard/log.html'):
 #logic to send email
 
 def send_mail():
-	pass
+	try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.ehlo()
+        server.starttls()
+        server.login(username, password)
+        server.sendmail(FROM, receivers, message)
+        server.close()

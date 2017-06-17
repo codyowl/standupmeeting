@@ -29,6 +29,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=30, blank=True, default='standupmeeting')
     role = models.CharField(max_length=30, blank=True, default='productmanager')
+    sender_email = models.EmailField()
+    sender_email_password = models.CharField(max_length=300)
     
 
 @receiver(post_save, sender=User)
